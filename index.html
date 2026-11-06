@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Tarik Tambang 3D — 17 Agustus Simulator</title>
+<link rel="stylesheet" href="style.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app">
+  <canvas id="scene"></canvas>
+
+  <div id="hud" class="hidden">
+    <div class="hud-top">
+      <div class="hud-card">Ronde / Round: <b id="roundLabel">1</b> &nbsp;•&nbsp; <span class="dot red"></span> <b id="scoreP">0</b> – <b id="scoreA">0</b> <span class="dot white"></span></div>
+      <div class="hud-card timer">⏱ <b id="timer">60</b>s</div>
+      <div class="hud-card">📷 <button id="camBtn" class="mini-btn">Orbit: OFF</button></div>
+    </div>
+
+    <div id="progressWrap">
+      <div class="side-label left">TIM KAMU<br/>YOUR TEAM</div>
+      <div id="progressBar">
+        <div id="winLineL"></div>
+        <div id="winLineR"></div>
+        <div id="centerTick"></div>
+        <div id="marker">🪢</div>
+      </div>
+      <div class="side-label right">LAWAN<br/>RIVAL</div>
+    </div>
+
+    <div class="hud-bottom">
+      <div class="stamina-box">
+        <label>Stamina</label>
+        <div id="staminaBar"><div id="staminaFill"></div></div>
+      </div>
+      <div class="timing-box">
+        <label>Ritme / Rhythm — tekan SPASI / ketuk saat penanda di zona hijau!</label>
+        <div id="timingBar"><div id="sweetZone"></div><div id="timingNeedle"></div></div>
+        <div id="combo">Kombo x1.0</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="touchControls" class="hidden">
+    <button id="pullBtn">TARIK! 🪢<small>ketuk / SPACE</small></button>
+  </div>
+
+  <div id="overlay">
+    <div class="panel">
+      <div class="bunting-emoji">🇮🇩 🏳️ 🇮🇩 🏳️ 🇮🇩</div>
+      <h1>TARIK TAMBANG 3D</h1>
+      <p class="sub">Simulator Lomba 17 Agustus — <i>Indonesian Independence Day Tug-of-War</i></p>
+      <div id="overlayText">
+        <p><b>Cara main / How to play:</b></p>
+        <ol>
+          <li>Tekan <kbd>SPASI</kbd> atau tombol <b>TARIK!</b> berulang mengikuti ritme.<br/><span class="en">Mash SPACE / tap PULL in rhythm.</span></li>
+          <li>Tarik saat penanda di <b>zona hijau</b> untuk bonus tenaga.<br/><span class="en">Hit the green zone for power bonus.</span></li>
+          <li>Jaga stamina! Seret penanda 🪢 melewati garis lawan.<br/><span class="en">Save stamina! Drag the marker past the rival line.</span></li>
+          <li>Menangkan <b>Best-of-3</b>. Tombol <kbd>C</kbd> ganti kamera.<br/><span class="en">Win best-of-3. Press C to toggle camera.</span></li>
+        </ol>
+      </div>
+      <button id="startBtn">MULAI / START ▶</button>
+      <p class="tiny">5 vs 5 • lumpur • wasit • suporter • bunyi WebAudio</p>
+    </div>
+  </div>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>
