@@ -72,6 +72,36 @@
     </div>
   </div>
 </div>
+<script>
+window.__booted = false;
+(function () {
+  var btnId = 'startBtn';
+  function showBootError(msg) {
+    var old = document.getElementById('boot-err');
+    if (old) { old.textContent = msg; return; }
+    var b = document.getElementById(btnId);
+    if (!b) return;
+    var d = document.createElement('div');
+    d.id = 'boot-err';
+    d.style.cssText = 'margin-top:10px;padding:10px;border-radius:8px;background:#7f1d1d;color:#fff;font-size:13px;line-height:1.5';
+    d.textContent = msg;
+    b.after(d);
+  }
+  window.addEventListener('error', function (e) {
+    if (e && e.message && /three|module|import|unpkg|744|failed to fetch/i.test(e.message))
+      showBootError('Gagal memuat 3D (' + e.message + '). Butuh internet (unpkg CDN) + jalankan via: python3 -m http.server 8000 lalu buka http://localhost:8000');
+  }, true);
+  var btn = document.getElementById(btnId);
+  if (btn) btn.addEventListener('click', function () {
+    setTimeout(function () {
+      if (!window.__booted) showBootError('3D belum termuat. Jangan double-click file-nya: jalankan `python3 -m http.server 8000` di folder game ini, buka http://localhost:8000, pastikan ada internet (Three.js dari unpkg CDN), lalu klik MULAI lagi. Cek Console (F12).');
+    }, 600);
+  });
+  setTimeout(function () {
+    if (!window.__booted) showBootError('3D belum termuat setelah 5 detik. Jalankan via `python3 -m http.server 8000` + butuh internet (unpkg CDN). Jika sudah, cek Console (F12).');
+  }, 5000);
+})();
+</script>
 <script type="module" src="main.js"></script>
 </body>
 </html>

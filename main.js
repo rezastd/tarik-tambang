@@ -601,4 +601,5 @@ window.addEventListener('resize', () => {
 // idle attract-mode rope so menu looks alive
 updateRope(0, 0.4);
 startBtn.onclick = startMatch;
+window.__booted = true;
 tick();
