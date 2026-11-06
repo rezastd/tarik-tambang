@@ -44,6 +44,17 @@ Spamming drains **stamina** — when `CAPEK! / TIRED!` appears, rest a second to
 - Mud-splash particles when slipping, gold sparks on sweet-zone hits, confetti on wins.
 - Sound 100% WebAudio oscillators: pulls, whistle, win/lose jingles, crowd.
 
+## Realism upgrade
+
+- Renderer: `ACESFilmicToneMapping` (exposure 1.1), sRGB, `PCFSoftShadowMap`; warm sun + hemisphere + soft ambient bounce.
+- Sky: gradient canvas sky dome, drifting low-poly clouds, distant tree/house/tent silhouettes.
+- Ground: multi-layer mud canvas texture (base + speckles + patches) with a canvas `roughnessMap` (wet = smooth), puddle discs with low roughness, stones, grass tufts, mud furrows, rope barriers in front of the crowd.
+- Rope: `TubeGeometry` along `CatmullRomCurve3` with twisted-fiber canvas texture repeated along its length, sag inverse to tension, high-frequency vibration at high tension, frayed cone ends.
+- Characters: articulated pivot groups (hip/shoulder/waist/neck), varied skin tones, red-vs-white numbered shirts (canvas texture), varied shorts, eyes, cap/hair variation; strain lean, arm pull cycle, leg brace, head-down bob all driven by rope velocity/heat; foot-slide drops footprint decals.
+- Flags/bunting: plane geometry with per-vertex sine-wave cloth (`waveCloth`), red-white.
+- Feedback: mud + puddle-splash particles on slips, gold sparks, ambient dust/mud motes, fading footprint trail decals (pooled, 40), subtle camera shake on slip/round-end, confetti on wins, judge whistle + flag raise on round end.
+- Performance: shared geometries, pooled particles/footprints, pre-allocated rope points and temp vectors, capped particle counts (400 + 80 motes), no per-frame allocations in the hot loop except the rebuilt rope tube (disposed each frame).
+
 ## Files
 
 - `index.html` — layout, HUD (timer/progress/stamina), bilingual overlays.
