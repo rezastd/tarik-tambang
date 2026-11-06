@@ -55,6 +55,24 @@ Spamming drains **stamina** — when `CAPEK! / TIRED!` appears, rest a second to
 - Feedback: mud + puddle-splash particles on slips, gold sparks, ambient dust/mud motes, fading footprint trail decals (pooled, 40), subtle camera shake on slip/round-end, confetti on wins, judge whistle + flag raise on round end.
 - Performance: shared geometries, pooled particles/footprints, pre-allocated rope points and temp vectors, capped particle counts (400 + 80 motes), no per-frame allocations in the hot loop except the rebuilt rope tube (disposed each frame).
 
+## Realism pass 2
+
+- **Image-based lighting:** sky + sun + earth prefiltered with
+  `PMREMGenerator` into `scene.environment`.
+- **Procedural normal maps:** mud, rope and shirts get Sobel normals; the
+  rope is a normal-mapped twisted-fibre tube.
+- **Shadows:** 2048 PCFSoft, blurred, normal-biased.
+- **People:** rounded torsos, capsule limbs, hands, feet, shoes, necks and
+  printed jersey numbers on front and back (no more numbers smeared over
+  the box sides). Feet sink into the mud under load.
+- **Rope:** the centre marker is now a red-white cloth band with fluttering
+  tails that lags behind the pull (elastic stretch), and the rope sags
+  toward the middle.
+- **Ambience:** synthesised wind / crowd murmur / cicadas; `M` mutes.
+- **Atmosphere:** wind gusts, circling birds, drifting leaves, soft round
+  mud and dust sprites, handheld camera micro-sway.
+
+
 ## Files
 
 - `index.html` — layout, HUD (timer/progress/stamina), bilingual overlays.
